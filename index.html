@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Todo App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>TODO</h1>
+    <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+  </header>
+
+  <div class="input-container">
+    <input id="new-todo" placeholder="Create a new todo..." />
+    <button id="add-todo" aria-label="Add todo">Add</button>
+  </div>
+
+  <ul id="todo-list"></ul>
+
+  <footer>
+    <span id="items-left">0 items left</span>
+    <div class="filters">
+      <button id="all">All</button>
+      <button id="active">Active</button>
+      <button id="completed">Completed</button>
+    </div>
+    <button id="clear-completed">Clear Completed</button>
+  </footer>
+
+  <!-- Подключаем СКОМПИЛИРОВАННЫЙ JS. defer гарантирует, что DOM уже готов -->
+  <script defer src="./dist/main.js"></script>
+</body>
+</html>

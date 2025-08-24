@@ -1,0 +1,193 @@
+:root {
+  --bg-light: #f0f0f0;
+  --text-light: #333;
+  --bg-dark: #181824;
+  --text-dark: #eee;
+  --primary: #3a7bfd;
+  --border-light: #ccc;
+  --border-dark: #444;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg-light);
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  transition: background 0.3s, color 0.3s;
+  min-height: 100vh;
+}
+
+/* 🌙 темная тема */
+body.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+#theme-toggle {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: inherit;
+}
+
+.input-container {
+  display: flex;
+  gap: 10px;
+  width: 400px;
+  max-width: 100%;
+}
+
+#new-todo {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid var(--border-light);
+  background: #fff;
+  color: #000;
+  transition: background 0.3s, color 0.3s, border 0.3s;
+}
+
+#add-todo {
+  padding: 10px 15px;
+  cursor: pointer;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: opacity 0.2s;
+}
+#add-todo:hover { opacity: 0.9; }
+
+body.dark #new-todo {
+  background: #25273c;
+  color: var(--text-dark);
+  border: 1px solid #555;
+}
+
+#todo-list {
+  list-style: none;
+  padding: 0;
+  width: 400px;
+  max-width: 100%;
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: background 0.3s, border 0.3s;
+  margin-top: 15px;
+}
+
+body.dark #todo-list {
+  background: #25273c;
+  border: 1px solid var(--border-dark);
+}
+
+#todo-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-light);
+}
+#todo-list li:last-child { border-bottom: none; }
+
+body.dark #todo-list li { border-bottom: 1px solid var(--border-dark); }
+
+.todo-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+/* круглый "чекбокс" */
+.todo-checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  flex: 0 0 20px;
+  background: transparent;
+}
+.todo-checkbox.checked { background: var(--primary); }
+.todo-checkbox:focus-visible { outline: 2px dashed var(--primary); outline-offset: 2px; }
+
+/* текст задачи */
+.todo-text {
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+.todo-text.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+/* крестик удаления */
+.delete-btn {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  color: #888;
+  flex: 0 0 auto;
+}
+.delete-btn:hover { color: red; }
+
+footer {
+  margin-top: 10px;
+  width: 400px;
+  max-width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  color: inherit;
+  flex-wrap: wrap;
+}
+
+.filters {
+  display: flex;
+  gap: 6px;
+}
+
+.filters button,
+#clear-completed {
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  color: inherit;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+.filters button:hover,
+#clear-completed:hover {
+  border-color: var(--primary);
+}
+
+/* 📱 Адаптив до 320px */
+@media (max-width: 320px) {
+  header, .input-container, #todo-list, footer { width: 100%; }
+  #new-todo { font-size: 14px; padding: 9px; }
+  #add-todo { font-size: 14px; padding: 9px 12px; }
+  #todo-list li { padding: 9px 10px; gap: 10px; }
+  .delete-btn { font-size: 16px; }
+}
