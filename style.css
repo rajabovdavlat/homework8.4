@@ -116,7 +116,6 @@ body.dark #todo-list li { border-bottom: 1px solid var(--border-dark); }
   min-width: 0;
 }
 
-/* круглый "чекбокс" */
 .todo-checkbox {
   width: 20px;
   height: 20px;
@@ -131,7 +130,6 @@ body.dark #todo-list li { border-bottom: 1px solid var(--border-dark); }
 .todo-checkbox.checked { background: var(--primary); }
 .todo-checkbox:focus-visible { outline: 2px dashed var(--primary); outline-offset: 2px; }
 
-/* текст задачи */
 .todo-text {
   flex: 1;
   overflow-wrap: anywhere;
@@ -141,7 +139,6 @@ body.dark #todo-list li { border-bottom: 1px solid var(--border-dark); }
   color: gray;
 }
 
-/* крестик удаления */
 .delete-btn {
   cursor: pointer;
   border: none;
@@ -183,7 +180,6 @@ footer {
   border-color: var(--primary);
 }
 
-/* 📱 Адаптив до 320px */
 @media (max-width: 320px) {
   header, .input-container, #todo-list, footer { width: 100%; }
   #new-todo { font-size: 14px; padding: 9px; }

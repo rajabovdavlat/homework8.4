@@ -5,10 +5,8 @@ function init() {
     const list = document.querySelector("#todo-list");
     const itemsLeft = document.querySelector("#items-left");
     const themeToggle = document.querySelector("#theme-toggle");
-    // ==== State ====
     let currentFilter = "all";
     let todos = loadTodos();
-    // ==== LocalStorage ====
     function loadTodos() {
         try {
             const raw = localStorage.getItem("todos");
@@ -21,9 +19,7 @@ function init() {
     function saveTodos() {
         localStorage.setItem("todos", JSON.stringify(todos));
     }
-    // ==== Utils ====
     const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
-    // ==== Render ====
     function render() {
         list.innerHTML = "";
         let filtered = todos;
@@ -67,7 +63,6 @@ function init() {
         }
         itemsLeft.textContent = `${todos.filter((t) => !t.completed).length} items left`;
     }
-    // ==== Add ====
     function addTodo() {
         const text = input.value.trim();
         if (!text)
@@ -81,24 +76,19 @@ function init() {
     input.addEventListener("keypress", (e) => { if (e.key === "Enter")
         addTodo(); });
     addBtn.addEventListener("click", addTodo);
-    // ==== Theme ====
     themeToggle.addEventListener("click", () => {
         document.body.classList.toggle("dark");
         themeToggle.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
     });
-    // ==== Filters ====
     document.querySelector("#all").onclick = () => { currentFilter = "all"; render(); };
     document.querySelector("#active").onclick = () => { currentFilter = "active"; render(); };
     document.querySelector("#completed").onclick = () => { currentFilter = "completed"; render(); };
-    // ==== Clear completed ====
     document.querySelector("#clear-completed").onclick = () => {
         todos = todos.filter((t) => !t.completed);
         saveTodos();
         render();
     };
-    // ==== First render ====
     render();
 }
-// Запускаем ТОЛЬКО когда DOM готов
 window.addEventListener("DOMContentLoaded", init);
 //# sourceMappingURL=main.js.map

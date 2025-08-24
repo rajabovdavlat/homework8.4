@@ -7,11 +7,9 @@ function init() {
     const itemsLeft = document.querySelector<HTMLSpanElement>("#items-left")!;
     const themeToggle = document.querySelector<HTMLButtonElement>("#theme-toggle")!;
 
-    // ==== State ====
     let currentFilter: "all" | "active" | "completed" = "all";
     let todos: Todo[] = loadTodos();
 
-    // ==== LocalStorage ====
     function loadTodos(): Todo[] {
         try {
             const raw = localStorage.getItem("todos");
@@ -24,10 +22,8 @@ function init() {
         localStorage.setItem("todos", JSON.stringify(todos));
     }
 
-    // ==== Utils ====
     const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
 
-    // ==== Render ====
     function render() {
         list.innerHTML = "";
 
@@ -78,7 +74,6 @@ function init() {
         itemsLeft.textContent = `${todos.filter((t) => !t.completed).length} items left`;
     }
 
-    // ==== Add ====
     function addTodo() {
         const text = input.value.trim();
         if (!text) return;
@@ -92,27 +87,22 @@ function init() {
     input.addEventListener("keypress", (e) => { if (e.key === "Enter") addTodo(); });
     addBtn.addEventListener("click", addTodo);
 
-    // ==== Theme ====
     themeToggle.addEventListener("click", () => {
         document.body.classList.toggle("dark");
         themeToggle.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
     });
 
-    // ==== Filters ====
     (document.querySelector("#all") as HTMLButtonElement).onclick = () => { currentFilter = "all"; render(); };
     (document.querySelector("#active") as HTMLButtonElement).onclick = () => { currentFilter = "active"; render(); };
     (document.querySelector("#completed") as HTMLButtonElement).onclick = () => { currentFilter = "completed"; render(); };
 
-    // ==== Clear completed ====
     (document.querySelector("#clear-completed") as HTMLButtonElement).onclick = () => {
         todos = todos.filter((t) => !t.completed);
         saveTodos();
         render();
     };
 
-    // ==== First render ====
     render();
 }
 
-// Запускаем ТОЛЬКО когда DOM готов
 window.addEventListener("DOMContentLoaded", init);
